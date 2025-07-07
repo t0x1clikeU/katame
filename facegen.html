@@ -83,6 +83,7 @@
     <button id="expandRight">右に展開</button>
     <button id="expandLeft">左に展開</button>
     <button id="downloadBtn">保存</button>
+    <button id="tweetBtn">Twitterで共有</button>
   </div>
 
   <script>
@@ -90,7 +91,6 @@
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     let img = new Image();
-    let originalImageData = null;
 
     upload.addEventListener("change", e => {
       const file = e.target.files[0];
@@ -138,6 +138,13 @@
       link.download = "symmetry.png";
       link.href = canvas.toDataURL("image/png");
       link.click();
+    });
+
+    document.getElementById("tweetBtn").addEventListener("click", () => {
+      const tweetText = encodeURIComponent("片目界隈の顔を暴いてみた！\n#片目界隈顔メーカー\n\n");
+      const tweetUrl = "https://t0x1clikeu.github.io/katame/";
+      const url = `https://twitter.com/intent/tweet?text=${tweetText}&url=${encodeURIComponent(tweetUrl)}`;
+      window.open(url, "_blank");
     });
   </script>
 </body>
